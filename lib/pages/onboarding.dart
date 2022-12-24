@@ -26,7 +26,7 @@ class _MyHomePageState extends State<OnboardingScreen> {
     return Container(
         color: Colors.white,
         child: Image.asset(
-          '../assets/svg/LOGO-UNILA.png'
+          'assets/svg/LOGO-UNILA.png'
         , fit: BoxFit.fitWidth,));
   }
 }

@@ -132,7 +132,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         const Spacer(),
         InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, Routes.api);
+
+          },
           child: Text(
             "See all",
             style: TextStyle(

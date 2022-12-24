@@ -1,67 +1,89 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import '../api/onedata.dart';
+import '../pages/list_mahasiswa.dart';
 import '../models/jsonModel.dart';
 
-
-class FirstScreen extends StatefulWidget {
-  const FirstScreen({Key? key}) : super(key: key);
+class ListMahasiswaScreen extends StatefulWidget {
+  const ListMahasiswaScreen({Key? key}) : super(key: key);
 
   @override
-  _FirstScreenState createState() => _FirstScreenState();
+  State<ListMahasiswaScreen> createState() => _ListMahasiswaScreenState();
 }
 
-class _FirstScreenState extends State<FirstScreen> {
-  final String apiUrl = "https://gorest.co.in/public/v1/users";
-
+class _ListMahasiswaScreenState extends State<ListMahasiswaScreen> {
+  int halaman = 1;
+  int angkatan = 20;
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-          home: Scaffold(
-        appBar: AppBar(
-          title: const Text('First Screen'),
+    return Scaffold(
+      appBar: AppBar(
+        foregroundColor: Colors.black,
+        title: const Text(
+          "List Mahasiswa",
+          style: TextStyle(color: Colors.black),
         ),
-        body: Container(
-          color: Colors.grey,
-          padding: const EdgeInsets.all(8),
-          child: FutureBuilder<List<User>>(
-            future: fetchUsers(),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            color: Colors.yellow,
+          ),
+        ),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(10),
+          ),
+          FutureBuilder<List<MahasiswaIlkom>>(
+            future: MahasiswaAPI.getAllMahasiswaIlkom(halaman),
             builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                List<User> users = snapshot.data as List<User>;
-                return ListView.builder(
-                    itemCount: users.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        margin: EdgeInsets.all(8),
-                        padding: EdgeInsets.all(8),
-                        color: Colors.white,
-                        child: Column(
-                          children: [
-                            Text(users[index].name),
-                            Text(users[index].email),
-                            Text(users[index].gender),
-
-                          ],
-                        ),
-                      );
-                    });
+              if (snapshot.connectionState == ConnectionState.done) {
+                return ListMahasiswa(mahasiswa: snapshot.data ?? []);
+              } else {
+                return const Center(child: CircularProgressIndicator());
               }
-              if (snapshot.hasError) {
-                print(snapshot.error.toString());
-                return Text('error');
-              }
-              return CircularProgressIndicator();
             },
           ),
-        ))
-        );
-  }
-
-  Future<List<User>> fetchUsers() async {
-    var response = await http.get(Uri.parse(apiUrl));
-    return (json.decode(response.body)['data'] as List)
-        .map((e) => User.fromJson(e))
-        .toList();
+          Padding(
+            padding: EdgeInsets.all(5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    if (halaman == 1) {
+                    } else {
+                      setState(() {
+                        halaman--;
+                      });
+                    }
+                  },
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.yellow),
+                  child: const Text(
+                    "kembali",
+                  ),
+                ),
+                Text("$halaman"),
+                ElevatedButton(
+                  onPressed: () {
+                    if (halaman == 10) {
+                    } else {
+                      setState(() {
+                        halaman++;
+                      });
+                    }
+                  },
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.yellow),
+                  child: const Text(
+                    "selanjutnya",
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Sizer(builder: (context, orientation, deviceType) {
       return MaterialApp(
-        title: 'Task Management',
+        title: 'Universitas Lampung',
         debugShowCheckedModeBanner: false,
         theme: AppColors.getTheme,
         initialRoute: Routes.onBoarding,

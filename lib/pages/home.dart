@@ -14,12 +14,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  DateTime now = DateTime.now();
+  late DateTime date = DateTime(now.year, now.month, now.day);
+  late String dateFormat = date.toString().replaceAll("00:00:00.000", "");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "26, Aug 2022",
+          dateFormat,
           style: Theme.of(context)
               .textTheme
               .bodySmall!

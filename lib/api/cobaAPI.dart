@@ -1,31 +1,22 @@
-// import 'dart:convert';
-// import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
-// import '../models/jsonModel.dart';
-// // import 'package:flutter/services.dart';
-
-// class GetRecipe {
-//   static var URL = 'https://uji.fmipa.unila.ac.id/api-test/recipes.json';
-//   Future<List<SimpleRecipe>> getRecipes() async {
-//     var response = await http
-//         .get(Uri.parse('https://uji.fmipa.unila.ac.id/api-test/recipes.json'));
-//     if (response.statusCode == 200) {
-//       // var data = json.decode(response.body);
-//       final Map<String, dynamic> json = jsonDecode(response.body);
-//       // Go through each recipe and convert json to SimpleRecipe object.
-//       if (json['recipes'] != null) {
-//         final recipes = <SimpleRecipe>[];
-//         json['recipes'].forEach((v) {
-//           recipes.add(SimpleRecipe.fromJson(v));
-//         });
-//         return recipes;
-//         // return recipes[1];
-//         // print(recipes[1].title);
-//       } else {
-//         return [];
-//       }
-//     } else {
-//       throw Exception('Failed to load recipes');
-//     }
-//   }
-// }
+class token {
+  // static? String token;
+  static Future<String> getToken() async {
+    String url = 'http://onedata.unila.ac.id/api/live/0.1/auth/login';
+    String username = 'mhs-testing';
+    String idAplikasi = '948df317-78f7-4b92-a53f-0a56215e07de';
+    String password = 'unilajaya';
+    // print("LELE123");
+    var APIToken = await http.post(Uri.parse(url), body: {
+      'username': username,
+      'id_aplikasi': idAplikasi,
+      'password': password,
+    });
+    // print("LELE");
+    var get_token_json = json.decode(APIToken.body);
+    String token_result = 'bearer' + get_token_json['data']['token'].toString();
+    return token_result;
+  }
+}

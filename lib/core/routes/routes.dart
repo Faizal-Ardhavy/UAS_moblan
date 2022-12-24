@@ -21,7 +21,7 @@ class RouterGenerator {
         );
         case Routes.api:
         return MaterialPageRoute(
-          builder: ((context) => const FirstScreen()),
+          builder: ((context) => const ListMahasiswaScreen()),
         );
       case Routes.home:
         return MaterialPageRoute(

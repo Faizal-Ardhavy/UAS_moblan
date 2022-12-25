@@ -194,7 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
               
             ),
             onTap: () {
-              Navigator.pushNamed(context, Routes.api);
+              Navigator.pushNamed(context, Routes.penelitian);
             }),
         GestureDetector(
             child: Container(

@@ -48,3 +48,27 @@ class Diklat {
     tahun = json['tahun'];
   }
 }
+
+class Penelitian {
+ String? id;
+ String ? judul_penelitian;
+ String ? bidang_keilmuan;
+ String ? waktu_data_ditambahkan;
+ String ? tahun;
+
+
+  Penelitian({
+    required this.id,
+    required this.judul_penelitian,
+    required this.waktu_data_ditambahkan,
+    required this.tahun,
+    required List<Penelitian> penelitian
+  });
+
+  Penelitian.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    judul_penelitian = json['judul_penelitian'];
+    waktu_data_ditambahkan = json['waktu_data_ditambahkan'];
+    tahun = json['tahun'];
+  }
+}

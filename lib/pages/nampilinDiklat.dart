@@ -12,7 +12,6 @@ class ListDiklatScreen extends StatefulWidget {
 
 class _ListDiklatScreenState extends State<ListDiklatScreen> {
   int halaman = 1;
-  int angkatan = 20;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

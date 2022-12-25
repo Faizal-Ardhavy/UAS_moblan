@@ -70,3 +70,35 @@ class DiklatApi {
   }
 
 }
+
+class PenelitianApi {
+  static Future<List<Penelitian>> getPenelitian() async {
+    // token.getToken();
+    // print('dwadawda');
+    String url =
+        'hhttp://onedata.unila.ac.id/api/live/0.1/penelitian/daftar?page=1&limit=10&sort_by=DESC';
+    String a = await token.getToken() as String;
+    var headers = {"Authorization": "${a}"};
+    final response = await http.get( Uri.parse(url), headers: headers);
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> json = jsonDecode(response.body);
+      if (json['data'] != null) {
+        // print(json['data']);
+        final penelitian = <Penelitian>[];
+        json['data'].forEach((v) {
+          // print('AAAA = ' + v["NPM"]);
+          // print('AAAA = ' + v["NPM"][1]);
+          penelitian.add(Penelitian.fromJson(v));
+        });
+        return penelitian;
+      } else {
+        print('diklat gagal');
+        return [];
+      }
+    } else {
+      print('diklat gagal 2');
+      throw Exception('Failed to ANU');
+    }
+  }
+}

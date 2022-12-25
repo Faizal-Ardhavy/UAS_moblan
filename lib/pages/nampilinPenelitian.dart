@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import '../api/onedata.dart';
-import '../pages/list_mahasiswa.dart';
+import '../pages/list_penelitian.dart';
 import '../models/jsonModel.dart';
 
-class ListMahasiswaScreen extends StatefulWidget {
-  const ListMahasiswaScreen({Key? key}) : super(key: key);
+class ListPenelitianScreen extends StatefulWidget {
+  const ListPenelitianScreen({Key? key}) : super(key: key);
 
   @override
-  State<ListMahasiswaScreen> createState() => _ListMahasiswaScreenState();
+  State<ListPenelitianScreen> createState() => _ListPenelitianScreenState();
 }
 
-class _ListMahasiswaScreenState extends State<ListMahasiswaScreen> {
+class _ListPenelitianScreenState extends State<ListPenelitianScreen> {
   int halaman = 1;
   @override
   Widget build(BuildContext context) {
@@ -18,12 +18,12 @@ class _ListMahasiswaScreenState extends State<ListMahasiswaScreen> {
       appBar: AppBar(
         foregroundColor: Colors.black,
         title: const Text(
-          "List Jurusan",
+          "List Penelitian",
           style: TextStyle(color: Colors.black),
         ),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
-            color: Colors.pink,
+            color: Colors.green,
           ),
         ),
       ),
@@ -32,11 +32,11 @@ class _ListMahasiswaScreenState extends State<ListMahasiswaScreen> {
           Padding(
             padding: EdgeInsets.all(10),
           ),
-          FutureBuilder<List<MahasiswaIlkom>>(
-            future: MahasiswaAPI.getAllMahasiswaIlkom(halaman),
+          FutureBuilder<List<Penelitian>>(
+            future: PenelitianApi.getPenelitian(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
-                return ListMahasiswa(mahasiswa: snapshot.data ?? []);
+                return ListPenelitian(penelitian: snapshot.data ?? []);
               } else {
                 return const Center(child: CircularProgressIndicator());
               }
@@ -57,7 +57,7 @@ class _ListMahasiswaScreenState extends State<ListMahasiswaScreen> {
                     }
                   },
                   style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.pink),
+                      ElevatedButton.styleFrom(backgroundColor: Colors.green),
                   child: const Text(
                     "<",
                   ),
@@ -73,7 +73,7 @@ class _ListMahasiswaScreenState extends State<ListMahasiswaScreen> {
                     }
                   },
                   style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.pink),
+                      ElevatedButton.styleFrom(backgroundColor: Colors.green),
                   child: const Text(
                     ">",
                   ),

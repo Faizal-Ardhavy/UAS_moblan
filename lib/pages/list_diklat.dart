@@ -4,21 +4,21 @@ import '../api/onedata.dart';
 import '../models/jsonModel.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ListMahasiswa extends StatefulWidget {
-  final List<MahasiswaIlkom> mahasiswa;
-  ListMahasiswa({Key? key, required this.mahasiswa}) : super(key: key);
+class ListDiklat extends StatefulWidget {
+  final List<Diklat> diklat;
+  ListDiklat({Key? key, required this.diklat}) : super(key: key);
 
   @override
-  State<ListMahasiswa> createState() => _ListMahasiswaState();
+  State<ListDiklat> createState() => _ListDiklatState();
 }
 
-class _ListMahasiswaState extends State<ListMahasiswa> {
-  late List<MahasiswaIlkom> ListMahasiswa;
+class _ListDiklatState extends State<ListDiklat> {
+  late List<Diklat> ListDiklat;
 
   @override
   void initState() {
     super.initState();
-    ListMahasiswa = widget.mahasiswa;
+    ListDiklat = widget.diklat;
   }
 
   @override
@@ -34,10 +34,10 @@ class _ListMahasiswaState extends State<ListMahasiswa> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: ListMahasiswa.length,
+              itemCount: ListDiklat.length,
               itemBuilder: (context, index) {
-                final mahasiswa = ListMahasiswa[index];
-                return listItem(mahasiswa);
+                final diklat = ListDiklat[index];
+                return listItem(diklat);
               },
               scrollDirection: Axis.vertical,
             ),
@@ -47,7 +47,7 @@ class _ListMahasiswaState extends State<ListMahasiswa> {
     );
   }
 
-  Widget listItem(MahasiswaIlkom mahasiswa_ilkom) {
+  Widget listItem(Diklat diklat_unila) {
     return Card(
       elevation: 2,
       margin: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
@@ -55,13 +55,13 @@ class _ListMahasiswaState extends State<ListMahasiswa> {
         title: Padding(
           padding: const EdgeInsets.only(bottom: 7),
           child: Text(
-            mahasiswa_ilkom.nm_lemb.toString(),
+            diklat_unila.nama_diklat.toString(),
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
         ),
         isThreeLine: true,
         subtitle: Text(
-            "kode prodi: ${mahasiswa_ilkom.kode_prodi.toString()}\nsks lulus: ${mahasiswa_ilkom.sks_lulus.toString()}"),
+            "id diklat: ${diklat_unila.id_diklat.toString()}\npenyelenggara: ${diklat_unila.penyelenggara.toString()}"),
         contentPadding: const EdgeInsets.all(10),
       ),
     );

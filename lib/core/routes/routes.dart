@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_management/pages/home.dart';
 import 'package:task_management/pages/nampilinAPI.dart';
+import 'package:task_management/pages/nampilinDiklat.dart';
 import 'package:task_management/pages/onboarding.dart';
 import 'package:task_management/pages/today_task.dart';
 
@@ -9,6 +10,7 @@ class Routes {
   static const home = "/home";
   static const todaysTask = "/task/todays";
   static const api = "/api";
+  static const diklat = "/diklat";
 
 }
 
@@ -30,6 +32,10 @@ class RouterGenerator {
       case Routes.todaysTask:
         return MaterialPageRoute(
           builder: ((context) => const TodaysTaskScreen()),
+        );
+        case Routes.diklat:
+        return MaterialPageRoute(
+          builder: ((context) => const ListDiklatScreen()),
         );
       default:
         return MaterialPageRoute(

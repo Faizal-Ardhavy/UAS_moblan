@@ -13,8 +13,7 @@ class MahasiswaIlkom {
     required this.kode_prodi,
     required this.sks_lulus,
     required List<MahasiswaIlkom> mahasiswas,
-    // required this.nomor_hp,
-    // required this.nomor_hp_darurat
+
   });
 
   MahasiswaIlkom.fromJson(Map<String, dynamic> json) {
@@ -22,7 +21,30 @@ class MahasiswaIlkom {
     nm_lemb = json['nm_lemb'];
     kode_prodi = json['kode_prodi'];
     sks_lulus = json['sks_lulus'];
-    // nomor_hp = json['nomor_hp'];
-    // nomor_hp_darurat = json['nomor_hp_darurat'];
+
+  }
+}
+
+class Diklat {
+ String? id_diklat;
+ String ? jenis_diklat;
+ String ? nama_diklat;
+ String ? penyelenggara;
+ String ? tahun;
+
+
+  Diklat({
+    required this.id_diklat,
+    required this.jenis_diklat,
+    required this.penyelenggara,
+    required this.tahun,
+    required List<Diklat> diklat,
+  });
+
+  Diklat.fromJson(Map<String, dynamic> json) {
+    id_diklat = json['id_diklat'];
+    nama_diklat = json['nama_diklat'];
+    penyelenggara = json['penyelenggara'];
+    tahun = json['tahun'];
   }
 }

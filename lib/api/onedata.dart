@@ -36,45 +36,37 @@ class MahasiswaAPI {
     }
   }
 
-  static Future<String> getTelephone(String id) async {
+}
+
+class DiklatApi {
+  static Future<List<Diklat>> getDiklat(int halaman) async {
+    // token.getToken();
+    // print('dwadawda');
     String url =
-        'http://onedata.unila.ac.id/api/live/0.1/mahasiswa/detail?id_peserta_didik=$id';
+        'http://onedata.unila.ac.id/api/live/0.1/diklat/list?page=${halaman}&limit=25&sort_by=DESC';
     String a = await token.getToken() as String;
     var headers = {"Authorization": "${a}"};
-    final response = await http.get( Uri.parse(url),headers: headers);
-    // print(response);
+    final response = await http.get( Uri.parse(url), headers: headers);
+    print(response.statusCode);
     if (response.statusCode == 200) {
       final Map<String, dynamic> json = jsonDecode(response.body);
       if (json['data'] != null) {
-        var get_token_json = jsonDecode(response.body);
-        String token_result =
-            get_token_json['data'][0]['no_telepon'].toString();
-        return token_result;
+        // print(json['data']);
+        final diklat = <Diklat>[];
+        json['data'].forEach((v) {
+          // print('AAAA = ' + v["NPM"]);
+          // print('AAAA = ' + v["NPM"][1]);
+          diklat.add(Diklat.fromJson(v));
+        });
+        return diklat;
       } else {
-        print('mahasiswa gagal');
-        return '';
+        print('diklat gagal');
+        return [];
       }
     } else {
-      print('mahasiswa gagal 2');
+      print('diklat gagal 2');
       throw Exception('Failed to ANU');
     }
-
-    // if (response.statusCode == 200) {
-    //   final Map<String, dynamic> json = jsonDecode(response.body);
-    //   if (json['data'] != null) {
-    //     // print(json['data']);
-    //     final mhs = <MahasiswaIlkomDetail>[];
-    //     json['data'].forEach((v) {
-    //       mhs.add(MahasiswaIlkomDetail.fromJson(v));
-    //     });
-    //     return mhs;
-    //   } else {
-    //     print('mahasiswa gagal');
-    //     return [];
-    //   }
-    // } else {
-    //   print('mahasiswa gagal 2');
-    //   throw Exception('Failed to ANU');
-    // }
   }
+
 }

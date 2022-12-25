@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import '../api/onedata.dart';
-import '../pages/list_penelitian.dart';
+import '../pages/list_gelar.dart';
 import '../models/jsonModel.dart';
 
-class ListPenelitianScreen extends StatefulWidget {
-  const ListPenelitianScreen({Key? key}) : super(key: key);
+class ListGelarScreen extends StatefulWidget {
+  const ListGelarScreen({Key? key}) : super(key: key);
 
   @override
-  State<ListPenelitianScreen> createState() => _ListPenelitianScreenState();
+  State<ListGelarScreen> createState() => _ListGelarScreenState();
 }
 
-class _ListPenelitianScreenState extends State<ListPenelitianScreen> {
+class _ListGelarScreenState extends State<ListGelarScreen> {
   int halaman = 1;
   @override
   Widget build(BuildContext context) {
@@ -18,12 +18,12 @@ class _ListPenelitianScreenState extends State<ListPenelitianScreen> {
       appBar: AppBar(
         foregroundColor: Colors.black,
         title: const Text(
-          "List Penelitian",
+          "List Gelar Akademik",
           style: TextStyle(color: Colors.black),
         ),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
-            color: Colors.green,
+            color: Colors.blue,
           ),
         ),
       ),
@@ -32,11 +32,11 @@ class _ListPenelitianScreenState extends State<ListPenelitianScreen> {
           Padding(
             padding: EdgeInsets.all(10),
           ),
-          FutureBuilder<List<Penelitian>>(
-            future: PenelitianApi.getPenelitian(halaman),
+          FutureBuilder<List<Gelar>>(
+            future: GelarApi.getGelar(halaman),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
-                return ListPenelitian(penelitian: snapshot.data ?? []);
+                return ListGelar(gelar: snapshot.data ?? []);
               } else {
                 return const Center(child: CircularProgressIndicator());
               }
@@ -57,7 +57,7 @@ class _ListPenelitianScreenState extends State<ListPenelitianScreen> {
                     }
                   },
                   style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                      ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                   child: const Text(
                     "<",
                   ),
@@ -73,7 +73,7 @@ class _ListPenelitianScreenState extends State<ListPenelitianScreen> {
                     }
                   },
                   style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                      ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                   child: const Text(
                     ">",
                   ),

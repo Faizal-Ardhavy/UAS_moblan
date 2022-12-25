@@ -72,3 +72,29 @@ class Penelitian {
     tahun = json['tahun'];
   }
 }
+
+class Gelar{
+ String? id_gelar_akad;
+ String ? singkat_gelar;
+ String ? nm_gelar_akad;
+ String ? waktu_data_ditambahkan;
+ String ? terakhir_diubah;
+
+
+  Gelar({
+    required this.id_gelar_akad,
+    required this.nm_gelar_akad,
+    required this.waktu_data_ditambahkan,
+    required this.terakhir_diubah,
+    required this.singkat_gelar,
+    required List<Penelitian> penelitian
+  });
+
+  Gelar.fromJson(Map<String, dynamic> json) {
+    id_gelar_akad = json['id_gelar_akad'];
+    nm_gelar_akad = json['nm_gelar_akad'];
+    singkat_gelar = json['singkat_gelar'];
+    waktu_data_ditambahkan = json['waktu_data_ditambahkan'];
+    terakhir_diubah = json['terakhir_diubah'];
+  }
+}

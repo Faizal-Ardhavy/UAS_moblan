@@ -158,8 +158,8 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 150.0,
               child:Column(children: const [
                 Align(alignment: Alignment.bottomCenter),
-                Icon(Icons.school, size: 50, color: Colors.orange),
-                Text('Susunan Diklat',textAlign: TextAlign.center, style: TextStyle(
+                Icon(Icons.archive, size: 50, color: Colors.orange),
+                Text('Kumpulan Diklat',textAlign: TextAlign.center, style: TextStyle(
                   fontSize: 25,
                   fontFamily: "Raleway",
                   color: Colors.orange
@@ -208,8 +208,8 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 150.0,
               child:Column(children: const [
                 Align(alignment: Alignment.bottomCenter),
-                Icon(Icons.work, size: 50, color: Colors.blue),
-                Text('Kumpulan Pengabdian',textAlign: TextAlign.center, style: TextStyle(
+                Icon(Icons.school, size: 50, color: Colors.blue),
+                Text('Kumpulan Gelar Akademik',textAlign: TextAlign.center, style: TextStyle(
                   fontSize: 25,
                   fontFamily: "Raleway",
                   color: Colors.blue
@@ -219,7 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
               
             ),
             onTap: () {
-              Navigator.pushNamed(context, Routes.api);
+              Navigator.pushNamed(context, Routes.gelar);
             }),
       ],
     );

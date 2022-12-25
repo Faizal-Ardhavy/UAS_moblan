@@ -23,11 +23,11 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
     TaskModel(
         from: DateTime(2022, 03, 16, 12, 00),
         to: DateTime(2022, 03, 16, 1, 00),
-        taskName: "Design Authentication Screens"),
+        taskName: "Pembayaran UKT"),
     TaskModel(
         from: DateTime(2022, 03, 16, 4, 00),
         to: DateTime(2022, 03, 16, 5, 00),
-        taskName: "Implementation"),
+        taskName: "Batas pengajuan Keringanan UKT"),  
   ];
 
   void getDates() {
@@ -66,7 +66,7 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Today's Task"),
+        title: const Text("Kalender"),
       ),
       body: _buildBody(context),
     );
@@ -120,7 +120,7 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
               height: 5,
             ),
             Text(
-              "10 Task Today",
+              "Kalender Akademik",
               style: Theme.of(context).textTheme.labelMedium,
             ),
           ],

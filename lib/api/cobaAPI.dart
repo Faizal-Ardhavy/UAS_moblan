@@ -16,7 +16,7 @@ class token {
     });
     // print("LELE");
     var get_token_json = json.decode(APIToken.body);
-    String token_result = 'bearer' + get_token_json['data']['token'].toString();
+    String token_result = get_token_json['data']['token_bearer'].toString();
     return token_result;
   }
 }

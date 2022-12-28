@@ -11,8 +11,8 @@ class MahasiswaAPI {
         'http://onedata.unila.ac.id/api/live/0.1/lembaga/daftar_prodi/detail?page=${halaman}&limit=25&sort_by=DESC';
     print('aaaa1');
     String a = await token.getToken() as String;
-    print(a);
     var headers = {"Authorization": "${a}"};
+    print(headers);
     final response = await http.get( Uri.parse(url), headers: headers);
     print(response.statusCode);
     if (response.statusCode == 200) {

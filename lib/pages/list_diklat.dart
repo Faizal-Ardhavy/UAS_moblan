@@ -56,7 +56,7 @@ class _ListDiklatState extends State<ListDiklat> {
           padding: const EdgeInsets.only(bottom: 7),
           child: Text(
             diklat_unila.nama_diklat.toString(),
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
           ),
         ),
         isThreeLine: true,
